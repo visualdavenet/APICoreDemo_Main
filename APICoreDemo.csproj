@@ -3,18 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Exe</OutputType>
+    <UserSecretsId>c83462f0-e2f8-4dba-926a-701e5f91f966</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Remove="appsettings.dev.json" />
-    <Content Remove="appsettings.json" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\content\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.6.0" />
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
