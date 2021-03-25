@@ -1,0 +1,104 @@
+﻿<head>
+
+    <title>API JQuery Demo JSON</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <script src="~/js/wow.js"></script>
+
+    <style type="text/css">
+        body {
+            background-color: white;
+            opacity: 63;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8em;
+            margin: 30px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        H1 {
+            text-align: center;
+            color: turquoise;
+            font-family: 'Raleway', sans-serif;
+            font-size: 50px;
+            padding: 10px;
+        }
+
+        .zoom:hover {
+            transform: scale(1.2);
+            z-index: 3000;
+        }
+    </style>
+</head>
+
+<body>
+    <div>&nbsp;</div>
+    <h1 class="wow rubberBand">
+        API JQuery Demo returning JSON
+    </h1>
+    <div id="users">
+        Find some random people...
+    </div>
+    <div>
+        <p>
+            <button class="btn btn-info" onclick="GetRandomProfiles()">Get Data from API</button><br>
+        </p>
+
+    </div>
+    <div class="container">
+        <div id="result" class="row col-lg-12"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @*<script src="https://button.glitch.me/button.js"></script>*@
+    <script type="text/javascript">
+        new WOW().init();
+
+
+        function GetRandomProfiles() {
+            document.getElementById('result').innerHTML = "";
+            var finalDetail = "";
+            var rowsReturned = 0;
+            var randomResult = Math.floor(Math.random() * 43) + 4;
+
+            $.getJSON("https://randomuser.me/api/?results=" + randomResult, function (data) {
+                var detail = "";
+                rowsReturned = data.results.length;
+                Toast.fire({
+                    icon: 'success',
+                    title: 'API JQuery call returned ' + rowsReturned + ' people!'
+                });
+
+                $.each(data.results, function (i, value) {
+                    detail = '<div class="card zoom wow bounceInUp shadow col-lg-3" style="width: 16rem; border-radius:5px;"> \
+                                    <div class="card-body"> \
+                                        <img src="' + value.picture.large + '" class="rounded-circle"> \
+                                        <h5 class="card-title">' + value.name.first + ' ' + value.name.last + '</h5> \
+                                        <h6 class="card-title">' + value.location.country + '</h6> \
+                                        <a href="#" style="font-size:13px;">' + value.email + '</a> \
+                                    </div> \
+                                </div> \ ';
+
+                    finalDetail += detail;
+                });
+
+                document.getElementById('result').innerHTML = finalDetail;
+            })
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.5.3/dist/sweetalert2.all.min.js"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: false,
+            onOpen: (toast) => {}
+        });
+    </script>
+    <div style="height:100px;">&nbsp;</div>
+</body>

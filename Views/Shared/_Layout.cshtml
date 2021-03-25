@@ -1,0 +1,55 @@
+﻿
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - APICoreDemo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script type="text/javascript" src="~/js/datetime.js"></script>
+</head>
+<body onload="realtimeClock();">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow" style="background-color:aliceblue;">
+        @Html.ActionLink("Visualdave Demo Site", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("API", "API", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("RSS", "RSS", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Sign Up", "SignUp", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Customer List", "CustomerList", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                @*<li class="nav-item">
+                        @Html.ActionLink("Customer List(Azure Table)", "CustomerListCosmoDB", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>*@
+            </ul>
+            <div id="clockMain" class="navbar-nav mr-auto align-baseline shadow rounded"></div>
+        </div>
+        @*<div class="navbar-nav ml-auto align-baseline">
+                <a class="button" href="http://visualdave.azurewebsites.net/" data-size="large" aria-label="Hosted on Azure">Hosted on Azure</a>
+            </div>&nbsp;&nbsp;*@
+        <div class="navbar-nav ml-auto align-baseline">
+            <a class="github-button" href="https://github.com/visualdavenet" data-size="large" aria-label="Follow visualdavenet on GitHub">Code On Github</a>
+        </div>&nbsp;&nbsp;
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+</body>
+@RenderBody()
+<footer class="nav-menu d-none d-lg-block">
+    <div style="text-align:center;">
+        <br /><br /><hr />
+        &copy; @DateTime.Now.Year - Visualdave Demo Site<br /><br />
+        <br />
+    </div>
+</footer>

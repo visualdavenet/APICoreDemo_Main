@@ -1,0 +1,67 @@
+﻿@model IEnumerable<APICoreDemo.Models.RssNews>
+
+<head>
+
+    <title>API JQuery Demo XML</title>
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" content="en" />
+    <meta name="google" content="notranslate" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <script src="~/js/wow.js"></script>
+
+    <style type="text/css">
+        body {
+            background-color: white;
+            opacity: 63;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8em;
+            margin: 30px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        H1 {
+            text-align: center;
+            color: turquoise;
+            font-family: 'Raleway', sans-serif;
+            font-size: 50px;
+            padding: 5px;
+        }
+
+        .card_image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+    <script>new WOW().init();</script>
+</head>
+<body>
+    <div>&nbsp;</div>
+    <h1 class="wow rubberBand">
+        XML Demo using C# Controller
+    </h1>
+    <div class="wow swing" data-wow-delay="2s"><img src="http://l.yimg.com/rz/d/yahoo_news_en-US_s_f_p_168x21_news.png" /></div><br />
+    <div class="container">
+        <div class="row row-cols-1">
+            @foreach (var item in Model)
+            {
+                <div class="card wow fadeInUp shadow" style="text-align-last:left;">
+                    <div class="card-header" style="width:100%; text-align: left;"><h3><a target="_blank" style="color:midnightblue; text-decoration: none;" href="@item.Link">@Html.Raw(System.Net.WebUtility.HtmlDecode(item.Title))</a></h3></div>
+                    <div class="card-body" style="font-size:larger; text-align:left; border-collapse: separate; border-spacing: 15px 50px;">
+                        <table style="width:100%; border-collapse:separate; border-spacing: 1em;">
+                            <tr>
+                                <td style="width:30%;"><a href="@item.Link" target="_blank" style="color:midnightblue; text-decoration: none;"><img class="card_image" src="@item.Image_URL" /></a></td>
+                                <td class="wow zoomIn" style="width:70%;">@item.Description</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div style="height:50px;">&nbsp;</div>
+            }
+        </div>
+    </div>
+</body>
+
