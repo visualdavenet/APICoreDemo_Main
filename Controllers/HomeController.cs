@@ -11,6 +11,8 @@ using Microsoft.Extensions.Options;
 using APICoreDemo.Services;
 using System.Net;
 using System.Data;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace APICoreDemo.Controllers
 {
@@ -166,6 +168,20 @@ namespace APICoreDemo.Controllers
                             Link = row.Field<string>("link")
                         }).ToList();
             return news;
+        }
+
+        public async Task<IActionResult> GetCustomersAPI()
+        {
+            List<Customer> customerList = new List<Customer>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://apihost.somee.com/mainapi"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    customerList = JsonConvert.DeserializeObject<List<Customer>>(apiResponse);
+                }
+            }
+            return View(customerList);
         }
     }
 }

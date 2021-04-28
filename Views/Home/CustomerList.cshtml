@@ -6,13 +6,13 @@
 }
 <style>
     .modal-dialog {
-        margin: 25vh auto 0px auto;
+        margin: 15vh auto 0px auto;
     }
 </style>
 <br />
 <div style="margin: 0 auto; width:80%">
     <div style="height:50px;"></div>
-    <h2 style="color:turquoise;">Customer List CRUD from SQL Server</h2>
+    <h2 style="color:turquoise;">Customer List from SQL Server using Dapper (CRUD)</h2>
     <br />
     @Html.ActionLink("Add New Customer", "SignUp", "Home", new { area = "" }, new { @class = "btn btn-primary" })
     <table class="table">
@@ -83,7 +83,8 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <img src="~/content/cross.png" />
+                <br />
+                <img src="~/content/delete.jpg" style="width:120px; height:120px;" /><br /><br />
                 <p>You are about to delete this customer!<br />Are you sure?</p>
             </div>
             <div class="modal-footer">
