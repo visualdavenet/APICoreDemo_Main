@@ -44,6 +44,7 @@ namespace APICoreDemo.Controllers
             {
                 customer.Add(new Customer
                 {
+                    ID = row.ID,
                     FirstName = row.FirstName,
                     LastName = row.LastName,
                     Occupation = row.Occupation,
@@ -57,9 +58,16 @@ namespace APICoreDemo.Controllers
             return View(customer);
         }
 
-        public ActionResult SignUp()
+        public ActionResult SignUp(int ID)
         {
-            ViewBag.Message = "Customer Sign Up";
+            if (ID != 0)
+            {
+                CustomerDataModel customer = DataLogic.GetCustomer(ID);
+                ViewBag.Message = "Update Customer";
+                return View(customer);
+            }
+
+            ViewBag.Message = "Add New Customer";
 
             return View();
         }
@@ -76,19 +84,39 @@ namespace APICoreDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                int recordsCreated = DataLogic.CreateCustomer(
-                    customer.FirstName,
-                    customer.LastName,
-                    customer.Occupation,
-                    customer.City,
-                    customer.State,
-                    customer.Email,
-                    customer.ImageURL);
-
+                if (customer.ID != null)
+                {
+                    int recordsUpdated = DataLogic.UpdateCustomer(
+                        customer.ID,
+                        customer.FirstName,
+                        customer.LastName,
+                        customer.Occupation,
+                        customer.City,
+                        customer.State,
+                        customer.Email,
+                        customer.ImageURL);
+                }
+                else
+                {
+                    int recordsCreated = DataLogic.CreateCustomer(
+                        customer.FirstName,
+                        customer.LastName,
+                        customer.Occupation,
+                        customer.City,
+                        customer.State,
+                        customer.Email,
+                        customer.ImageURL);
+                }
                 return RedirectToAction("CustomerList");
             }
 
             return View();
+        }
+
+        public ActionResult DeleteCustomer(int ID)
+        {
+            var result = DataLogic.DeleteCustomer(ID.ToString());
+            return RedirectToAction("CustomerList");
         }
 
         public JsonResult GetCustomers()

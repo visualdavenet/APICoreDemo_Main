@@ -7,7 +7,7 @@ namespace APICoreDemo.Models
 {
     public class CustomerDataModel
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Occupation { get; set; }

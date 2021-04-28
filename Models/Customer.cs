@@ -8,6 +8,7 @@ namespace APICoreDemo.Models
 {
     public class Customer
     {
+        public string ID { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "Max length is 50 characters.")]
         [Display(Name = "First Name")]
